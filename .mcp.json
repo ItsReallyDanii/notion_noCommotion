@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json.schemastore.org/mcp-config.json",
+  "_comment": "Notion MCP server configuration for AI editors (Cursor, Claude Desktop, Zed).",
+  "_setup": [
+    "1. Copy this file to .cursor/mcp.json (Cursor) or ~/Library/Application Support/Claude/claude_desktop_config.json (Claude Desktop)",
+    "2. Replace YOUR_NOTION_TOKEN with your integration token from https://www.notion.so/profile/integrations",
+    "3. The MCP server lets your AI editor browse NVB databases interactively during development",
+    "4. To also use MCP at RUNTIME (in the verdict pipeline), start with HTTP transport — see README"
+  ],
+  "mcpServers": {
+    "notion-verdict-board": {
+      "command": "npx",
+      "args": ["-y", "@notionhq/notion-mcp-server"],
+      "env": {
+        "NOTION_TOKEN": "YOUR_NOTION_TOKEN"
+      }
+    }
+  }
+}

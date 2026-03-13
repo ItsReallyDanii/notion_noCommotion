@@ -1,0 +1,27 @@
+{
+  "name": "notion-verdict-board",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Human-in-the-loop verdict board for AI outputs, backed by Notion as the control plane.",
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "type-check": "turbo run type-check",
+    "validate-env": "dotenv -e .env -- tsx scripts/validate-env.ts",
+    "seed": "dotenv -e .env -- tsx scripts/seed-notion.ts",
+    "demo": "dotenv -e .env -- tsx scripts/demo-run.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "dotenv": "^16.4.5",
+    "dotenv-cli": "^7.4.2",
+    "tsx": "^4.7.0",
+    "turbo": "^2.0.0",
+    "typescript": "^5.4.0"
+  }
+}
