@@ -245,7 +245,7 @@ Returns: `{ artifactPageId, notionUrl, githubUrl }`
 
 - Notion webhooks are in private beta — the `/api/webhook` route is stubbed
 - Pipeline runs synchronously in the HTTP request — ~15–45s, will timeout on Vercel Hobby
-- MCP tool names vary by `@notionhq/notion-mcp-server` version — `MCPContextProvider` tries `notion_post_v1_search`, `API-post-search`, `search` in order and logs available tools on connect. If none match, it throws, and `FallbackContextProvider` catches the error and uses the direct path.
+- MCP tool names vary by `@notionhq/notion-mcp-server` version — `MCPContextProvider` tries `notion_post_v1_search`, `API-post-search`, `search` in order and logs available tools on connect. If none match, it logs a warning and returns empty context (the pipeline continues with no MCP evidence; `retrievedVia` stays `"mcp"`). Connection/network errors cause a throw that `FallbackContextProvider` catches, falling back to direct API with `retrievedVia = "mcp_fallback_to_direct"`.
 - No pagination on board view (first 100 items)
 - GitHub file artifact creation is TODO — issue creation works
 

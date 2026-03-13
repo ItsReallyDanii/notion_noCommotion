@@ -172,7 +172,7 @@ When `MCP_SERVER_URL` is set, `resolveContextProvider()` returns a `FallbackCont
 - MCP fails (server down, tool missing, network error): falls back to direct API, `retrievedVia = "mcp_fallback_to_direct"`
 - `MCP_SERVER_URL` not set: direct API only, `retrievedVia = "direct"`
 
-**Tool name note:** The official server version 2.x exposes tools via OpenAPI path naming. Run `pnpm demo` with `MCP_SERVER_URL` set and watch the `[MCP] Connected. Available tools:` log line to see the exact tool names on your version. `MCPContextProvider` tries common name patterns (`notion_post_v1_search`, `API-post-search`, `search`) and throws if none match, allowing `FallbackContextProvider` to catch the error and use the direct path.
+**Tool name note:** The official server version 2.x exposes tools via OpenAPI path naming. Run `pnpm demo` with `MCP_SERVER_URL` set and watch the `[MCP] Connected. Available tools:` log line to see the exact tool names on your version. `MCPContextProvider` tries common name patterns (`notion_post_v1_search`, `API-post-search`, `search`). If none match, it logs a warning and returns empty context (`retrievedVia` stays `"mcp"`; the pipeline runs with no MCP evidence). Connection/network errors do throw — those are caught by `FallbackContextProvider`, which retries with the direct API and sets `retrievedVia = "mcp_fallback_to_direct"`.
 
 ---
 

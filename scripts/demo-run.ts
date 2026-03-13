@@ -122,9 +122,11 @@ if (shouldPromote) {
   console.log(`  Artifact ID:  ${artifactPageId}`);
   console.log(`  Notion URL:   ${notionUrl}`);
 } else {
-  console.log("\n  To promote: open the inbox item in Notion, set Human Decision = Approve,");
-  console.log("  then re-run with: pnpm demo --promote");
-  console.log("  Or call: POST http://localhost:3000/api/promote");
+  console.log("\n  To promote this item manually:");
+  console.log("    1. Open the inbox item in Notion, set Human Decision = Approve");
+  console.log(`    2. POST http://localhost:3000/api/promote`);
+  console.log(`       Body: { "inbox_page_id": "${inboxPageId}", "create_github_artifact": false }`);
+  console.log("\n  Or run `pnpm demo --promote` for a fresh end-to-end run (new item + promote).");
 }
 
 console.log("\n╔═══════════════════════════════════════════════════════════╗");
